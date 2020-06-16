@@ -14,7 +14,7 @@
                         Please enter a phone number
                     </span>
                     <span
-                        *ngIf="phoneDirForm.controls['phoneNumber'].hasError('phoneNumberLengthValidator') && 
+                        *ngIf="phoneDirForm.controls['phoneNumber'].hasError('phoneNumberLengthValidator') &&
                             phoneDirForm.controls['phoneNumber'].touched && !phoneDirForm.controls['phoneNumber'].hasError('required')"
                         class="text-danger">
                         Please enter 7 or 10 digits

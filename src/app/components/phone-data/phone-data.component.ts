@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class PhoneDataComponent implements OnInit {
 
   numbers: Array<any>
-  totalRecords: Number
-  page: Number = 1
+  totalRecords: number
+  page: number = 1
   isLoading:boolean=true;
 
   constructor(private phoneDirService: PhoneDirectoryService, private route: ActivatedRoute) {

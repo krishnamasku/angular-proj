@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PhonenumberPipe implements PipeTransform {
 
   transform(phoneNumber:string): string {
-    let newPhoneNUmber = phoneNumber
+    
     let numbers = phoneNumber.split("")
     
     let phone1 = ''
