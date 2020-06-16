@@ -1,0 +1,29 @@
+<div class="mx-auto mt-5 p-5" style="background-color: #eee; width: 300px;">
+    <div class="row justify-content-center">
+        <form [formGroup]="phoneDirForm" (ngSubmit)="onSubmit()">
+            <div class=" form-group">
+                <div class="row justify-content-center">
+                    <label for="phoneNumberId" class="font-weight-bold">Enter phone Number</label>
+                </div>
+                <input type="text" #refPhoneNumber class="form-control" id="phoneNumberId" NumbersOnly
+                    formControlName="phoneNumber" placeholder="Phone number" maxlength="10"
+                    aria-describedby="phoneNumError">
+                <small id="phoneNumError" *ngIf="!phoneDirForm.valid" class="form-text text-muted text-center">
+                    <span *ngIf="phoneDirForm.controls['phoneNumber'].hasError('required') &&
+                            phoneDirForm.controls['phoneNumber'].touched" class="text-danger">
+                        Please enter a phone number
+                    </span>
+                    <span
+                        *ngIf="phoneDirForm.controls['phoneNumber'].hasError('phoneNumberLengthValidator') && 
+                            phoneDirForm.controls['phoneNumber'].touched && !phoneDirForm.controls['phoneNumber'].hasError('required')"
+                        class="text-danger">
+                        Please enter 7 or 10 digits
+                    </span>
+                </small>
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" [disabled]="!phoneDirForm.valid" class="btn btn-primary mb-2">Submit</button>
+            </div>    
+        </form>
+    </div>
+</div>

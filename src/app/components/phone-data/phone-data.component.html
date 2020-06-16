@@ -1,0 +1,24 @@
+<div *ngIf="isLoading" class="row justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div class="text-center mt-3">
+    <p class="text-primary">
+        Below are the possible phone number combinations for the phone number you have entered
+    </p>
+    <p>
+        Total phone number combinations are : <strong>{{totalRecords}}</strong>
+    </p>
+</div>
+<div class="row justify-content-center">
+    <div class="alert alert-dark col-md-2" style="margin:3px; border-radius: 0px;" 
+        *ngFor="let number, index as i of numbers | paginate: { id:'phoneDataPagesId', itemsPerPage: 20, currentPage: page, totalItems: totalRecords }">
+       <p>{{i + 1}} . {{number | phonenumber}}</p>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-3">
+    <pagination-controls id="phoneDataPagesId" directionLinks="false" (pageChange)="page = $event">
+    </pagination-controls>
+</div>
