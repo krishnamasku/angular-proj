@@ -12,6 +12,7 @@ import { PhoneDirectoryService } from './services/phone-directory.service';
 import { PhonenumberPipe } from './pipes/phonenumber.pipe';
 import { SrtictlynumbersonlyDirective } from './directives/srtictlynumbersonly.directive';
 import { PhoneDirectoryHomeComponent } from './components/phone-directory-home/phone-directory-home.component';
+import { NavigationService } from './services/navigation.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { PhoneDirectoryHomeComponent } from './components/phone-directory-home/p
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [PhoneDirectoryService],
+  providers: [
+    PhoneDirectoryService, 
+    NavigationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

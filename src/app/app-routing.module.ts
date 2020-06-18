@@ -8,7 +8,8 @@ const routes: Routes = [
   {path:'home', component:PhoneDirectoryHomeComponent},
   {path:'phone-list-for/:number', component:PhoneDataComponent},
   {path:'', redirectTo: '/home', pathMatch: 'full'},
-  {path:'**', component:PageNotFoundComponent}
+  {path:'**', component:PageNotFoundComponent},
+  {path:'bad-request', redirectTo: '/**', pathMatch: 'full'}
 ];
 
 @NgModule({

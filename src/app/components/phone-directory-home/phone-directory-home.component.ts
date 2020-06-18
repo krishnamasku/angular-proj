@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-phone-directory-home',
@@ -13,10 +14,10 @@ export class PhoneDirectoryHomeComponent {
     phoneNumber: new FormControl(null, [Validators.required, phoneNumberLengthValidator])
   })
 
-  constructor(private _router: Router) { }
+  constructor(private _navigation:NavigationService) { }
 
   onSubmit() {
-    this._router.navigate(['/phone-list-for', this.phoneDirForm.value.phoneNumber]);
+    this._navigation.getPhoneDataPage(this.phoneDirForm);
   }
 
 }
@@ -26,8 +27,6 @@ function phoneNumberLengthValidator(control: AbstractControl): { [key: string]: 
   const regex1: RegExp = new RegExp('^[1-9][0-9]{9}$')
   const regex2: RegExp = new RegExp('^[0-9]{7}$')
 
-  //let size = phoneNumber.length
-   
   if (String(phoneNumber).match(regex1) || String(phoneNumber).match(regex2)) {
       return null
   }else if(phoneNumber && phoneNumber.length>6){
