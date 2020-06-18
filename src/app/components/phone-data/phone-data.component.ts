@@ -11,10 +11,10 @@ import { NavigationService } from 'src/app/services/navigation.service';
 })
 export class PhoneDataComponent implements OnInit {
 
-  numbers: Array<any> = null;
+  numbers: Array<any>
   totalRecords: number
   page: number = 1
-  isParamValid: boolean = false;
+  isDataLoaded:boolean = false
 
   constructor(
     private phoneDirService: PhoneDirectoryService, 
@@ -30,31 +30,22 @@ export class PhoneDataComponent implements OnInit {
   getPhoneData() {
     this.route.params.subscribe((params) => {
       const numberParam = params['number'];
-      if(numberParam 
-          && (numberParam.length == 7 
-                || numberParam.length == 10)){
-        this.isParamValid = true;
-        this.loadData(numberParam);
-      }
+      this.loadData(numberParam);
     });
-
-    if(!this.isParamValid)
-      this._navigation.navigateToNotFoundPage()
-      
   }
 
   loadData(enteredPhone:string){
-    let statusCode:number=0;
     this.phoneDirService
       .getPhoneNumberCombinationsData(enteredPhone)
     .subscribe((res:any) => {
-      statusCode = res.status
-      let resBody = res.body
-      this.numbers = resBody
-      this.totalRecords = this.numbers.length
-    })
-    if(statusCode==0)
-      this._navigation.navigateToServerErrorPage()
+      if(res.status === 200)
+        this.isDataLoaded = true
+        this.numbers = res.body
+        this.totalRecords = this.numbers.length
+      },
+      error => {
+        this._navigation.nagivateToErrorPage(error);
+      });
   }
 
 }

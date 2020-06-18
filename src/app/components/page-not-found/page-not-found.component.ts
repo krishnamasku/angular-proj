@@ -12,7 +12,9 @@ export class PageNotFoundComponent {
 
   private isServerError:boolean=false
 
-  constructor(private _navgation:NavigationService, private _activatedRoute:ActivatedRoute) { }
+  constructor(
+    private _navgation:NavigationService
+    ) { }
 
   onClick(){
     this._navgation.getHomePage();

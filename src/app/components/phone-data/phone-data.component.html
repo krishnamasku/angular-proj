@@ -1,29 +1,43 @@
-<div class="text-center mt-3">
+<div *ngIf="!isDataLoaded">
+  <table style="height: 400px;">
+    <tbody>
+      <tr>
+        <td class="align-middle">
+          <p>...........Loading Data!</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="isDataLoaded">
+  <div class="text-center mt-3">
     <p class="text-primary">
-        Below are the possible phone number combinations for the phone number you have entered
+      Below are the possible phone number combinations for the phone number you have entered
     </p>
     <p *ngIf="totalRecords">
-        Total phone number combinations are : <strong>{{totalRecords}}</strong>
+      Total phone number combinations are : <strong>{{totalRecords}}</strong>
     </p>
-</div>
-<div class="row justify-content-center">
+  </div>
+  <div class="row justify-content-center">
     <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col" class="text-center">#</th>
-            <th scope="col" class="text-center">Phone numbers</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let number, index as i of numbers | paginate: { id:'phoneDataPagesId', itemsPerPage: 9, currentPage: page, totalItems: totalRecords }">
-            <th scope="row" class="text-center">{{i+1}}</th>
-            <td class="text-center">{{number | phonenumber}}</td>
-          </tr>
-        </tbody>
-    </table>  
-</div>
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">#</th>
+          <th scope="col" class="text-center">Phone numbers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let number, index as i of numbers | paginate: { id:'phoneDataPagesId', itemsPerPage: 9, currentPage: page, totalItems: totalRecords }">
+          <th scope="row" class="text-center">{{i+1}}</th>
+          <td class="text-center">{{number | phonenumber}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="row justify-content-center mt-3">
+  <div class="row justify-content-center mt-3">
     <pagination-controls id="phoneDataPagesId" directionLinks="false" (pageChange)="page = $event">
     </pagination-controls>
+  </div>
 </div>

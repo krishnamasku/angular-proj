@@ -14,18 +14,27 @@ export class NavigationService {
   }
 
   getPhoneDataPage(phoneDirForm: FormGroup) {
-    let phoneNUmber = phoneDirForm.value.phoneNumber
-    if(phoneNUmber && (phoneNUmber.length==7 || phoneNUmber.length==10))
-      this._router.navigate(['/phone-list-for', phoneDirForm.value.phoneNumber])
-    else
-    this.navigateToNotFoundPage()
+    this._router.navigate(['/phone-list-for', 
+        phoneDirForm.value.phoneNumber])
+  }
+
+  nagivateToErrorPage(error:any){
+    console.log(error)
+    if(error.status >= 400 && error.status <= 499){
+      this.navigateToNotFoundPage()
+    }else if(error.status >= 500 && error.status <= 599){
+      this.navigateToServerErrorPage()
+    }else if(error.status === 0){
+      this.navigateToServerErrorPage()
+    }
   }
 
   navigateToNotFoundPage() {
-    this._router.navigate(['/somethingiswrong']);
+    this._router.navigate(['/page-not-found']);
   }
 
   navigateToServerErrorPage(){
+    console.log("server page")
     this._router.navigate(['/server-error'])
   }
 
