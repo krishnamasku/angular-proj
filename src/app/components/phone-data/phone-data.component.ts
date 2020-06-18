@@ -39,17 +39,22 @@ export class PhoneDataComponent implements OnInit {
     });
 
     if(!this.isParamValid)
-      this._navigation.getBadRequestPage();
+      this._navigation.navigateToNotFoundPage()
       
   }
 
   loadData(enteredPhone:string){
+    let statusCode:number=0;
     this.phoneDirService
       .getPhoneNumberCombinationsData(enteredPhone)
-    .subscribe(res => {
-      this.numbers = res;
+    .subscribe((res:any) => {
+      statusCode = res.status
+      let resBody = res.body
+      this.numbers = resBody
       this.totalRecords = this.numbers.length
     })
+    if(statusCode==0)
+      this._navigation.navigateToServerErrorPage()
   }
 
 }

@@ -7,18 +7,26 @@ import { FormGroup } from '@angular/forms';
 })
 export class NavigationService {
 
-  constructor(private _router:Router, private _activatedRoute: ActivatedRoute) { }
+  constructor(private _router: Router) { }
 
-  getHomePage(){
-    this._router.navigate(['/home']);
+  getHomePage() {
+    this._router.navigate(['/home'])
   }
 
-  getPhoneDataPage(phoneDirForm:FormGroup){
-    this._router.navigate(['/phone-list-for', phoneDirForm.value.phoneNumber]);
+  getPhoneDataPage(phoneDirForm: FormGroup) {
+    let phoneNUmber = phoneDirForm.value.phoneNumber
+    if(phoneNUmber && (phoneNUmber.length==7 || phoneNUmber.length==10))
+      this._router.navigate(['/phone-list-for', phoneDirForm.value.phoneNumber])
+    else
+    this.navigateToNotFoundPage()
   }
 
-  getBadRequestPage(){
-    this._router.navigate(['/bad-request']);
+  navigateToNotFoundPage() {
+    this._router.navigate(['/somethingiswrong']);
+  }
+
+  navigateToServerErrorPage(){
+    this._router.navigate(['/server-error'])
   }
 
 }

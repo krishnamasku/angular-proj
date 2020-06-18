@@ -13,6 +13,7 @@ import { PhonenumberPipe } from './pipes/phonenumber.pipe';
 import { SrtictlynumbersonlyDirective } from './directives/srtictlynumbersonly.directive';
 import { PhoneDirectoryHomeComponent } from './components/phone-directory-home/phone-directory-home.component';
 import { NavigationService } from './services/navigation.service';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavigationService } from './services/navigation.service';
     PhonenumberPipe,
     SrtictlynumbersonlyDirective,
     PageNotFoundComponent,
-    PhoneDirectoryHomeComponent
+    PhoneDirectoryHomeComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,
