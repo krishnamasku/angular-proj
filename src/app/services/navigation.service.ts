@@ -34,7 +34,6 @@ export class NavigationService {
   }
 
   navigateToServerErrorPage(){
-    console.log("server page")
     this._router.navigate(['/server-error'])
   }
 

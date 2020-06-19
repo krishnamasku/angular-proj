@@ -14,11 +14,11 @@ export class PhoneDataComponent implements OnInit {
   numbers: Array<any>
   totalRecords: number
   page: number = 1
-  isDataLoaded:boolean = false
+  isDataLoaded: boolean = false
 
   constructor(
-    private phoneDirService: PhoneDirectoryService, 
-    private route: ActivatedRoute, 
+    private phoneDirService: PhoneDirectoryService,
+    private route: ActivatedRoute,
     private _navigation: NavigationService) {
     this.numbers = new Array<any>()
   }
@@ -34,18 +34,19 @@ export class PhoneDataComponent implements OnInit {
     });
   }
 
-  loadData(enteredPhone:string){
+  loadData(enteredPhone: string) {
     this.phoneDirService
       .getPhoneNumberCombinationsData(enteredPhone)
-    .subscribe((res:any) => {
-      if(res.status === 200)
-        this.isDataLoaded = true
-        this.numbers = res.body
-        this.totalRecords = this.numbers.length
+      .subscribe((res: any) => {
+        if (res.status === 200) {
+          this.isDataLoaded = true
+          this.numbers = res.body
+          this.totalRecords = this.numbers.length
+        }
       },
-      error => {
-        this._navigation.nagivateToErrorPage(error);
-      });
+        error => {
+          this._navigation.nagivateToErrorPage(error);
+        });
   }
 
 }

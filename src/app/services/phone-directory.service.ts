@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class PhoneDirectoryService {
 
-  private _url = "https://cryptic-ocean-17869.herokuapp.com/phone/"
-  //private _url = "http://localhost:8080/phone/"
+  private _proxy_url = "https://cors-anywhere.herokuapp.com/"
+  private _url = "https://cryptic-ocean-17869.herokuapp.com/phone/";
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
-  getPhoneNumberCombinationsData(number:string):Observable<HttpResponse<[]>>{
-    return this._http.get<[]>(this._url+number, {observe:'response'});
+  getPhoneNumberCombinationsData(number: string): Observable<HttpResponse<[]>> {
+    return this._http.get<[]>(this._proxy_url + this._url + number, { observe: 'response' });
   }
 
 }
