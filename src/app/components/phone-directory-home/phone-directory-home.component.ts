@@ -24,7 +24,11 @@ export class PhoneDirectoryHomeComponent {
       if ((phoneNumber.length === 10 && 
               !String(phoneNumber).match(regex))) {
         this.digitTenWarn = true;
+      }else{
+        this.digitTenWarn = false;
       }
+    }else{
+      this.digitTenWarn = false;
     }
   }
 
