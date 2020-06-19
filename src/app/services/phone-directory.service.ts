@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class PhoneDirectoryService {
 
-  private _url = "http://localhost:8080/phone/";
+  private _url = "https://cryptic-ocean-17869.herokuapp.com/phone/"
+  //private _url = "http://localhost:8080/phone/"
 
   constructor(private _http:HttpClient) { }
 
