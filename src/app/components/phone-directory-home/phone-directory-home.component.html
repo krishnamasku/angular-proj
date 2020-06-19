@@ -6,7 +6,7 @@
                     <label for="phoneNumberId" class="font-weight-bold">Enter phone Number</label>
                 </div>
                 <input type="text" #refPhoneNumber class="form-control" id="phoneNumberId" NumbersOnly
-                    formControlName="phoneNumber" placeholder="Phone number" maxlength="10"
+                    formControlName="phoneNumber" placeholder="Phone number" maxlength="10" (blur)="onBlur(refPhoneNumber.value)"
                     aria-describedby="phoneNumError">
                 <small id="phoneNumError" *ngIf="!phoneDirForm.valid" class="form-text text-muted text-center">
                     <span *ngIf="phoneDirForm.controls['phoneNumber'].hasError('required') &&
@@ -15,9 +15,13 @@
                     </span>
                     <span
                         *ngIf="phoneDirForm.controls['phoneNumber'].hasError('phoneNumberLengthValidator') &&
-                            phoneDirForm.controls['phoneNumber'].touched && !phoneDirForm.controls['phoneNumber'].hasError('required')"
+                            phoneDirForm.controls['phoneNumber'].touched && !phoneDirForm.controls['phoneNumber'].hasError('required')
+                            && !digitTenWarn"
                         class="text-danger">
                         Please enter 7 or 10 digits
+                    </span>
+                    <span *ngIf="digitTenWarn" class="text-danger">
+                        10 digit phone number should not starts with digit 0
                     </span>
                 </small>
             </div>
